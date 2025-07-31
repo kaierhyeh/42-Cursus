@@ -22,5 +22,5 @@
 |05| [Inception](https://github.com/kaierhyeh/42-Cursus/tree/main/Inception) | Network & system administration | Docker | 125% |
 |05| [ft_irc](https://github.com/El-cmd/ft_irc) | C++ | Internet relay chat |  ???% |
 |05| [Webserv](https://github.com/kaierhyeh/42-Cursus/tree/main/Webserv) | C++ | HTTP server | 125% |
-|06| [Exam Rank 06] | C | |  100% |
+|06| [Exam Rank 06](https://github.com/kaierhyeh/42-Cursus/tree/main/Exam%20Rank%2006) | C | Mini server |  100% |
 |06| [ft_transcendence] | ||  ???% |
