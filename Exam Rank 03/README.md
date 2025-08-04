@@ -1,5 +1,9 @@
 # Exam Rank 03
-This exam has only 1 assignment:  get_next_line 👀, or if you're lucky, ft_printf that manages only s, d and x.
+The school has updated this exam and therefore the guide below is **outdated**.
+</br></br></br>
+<details>
+   <summary>
+This exam has only 1 assignment:  get_next_line 👀, or if you're lucky, ft_printf that manages only s, d and x.   </summary>
 
 ## Note
 #### `ft_printf`
@@ -20,3 +24,4 @@ fcntl = file control   <br>
 &emsp;&emsp;- 出來 res = ft_strdup(*line);   <br>
 - main   <br>
 用 line 裝 get_next_line，free 完再 recall
+</details>
