@@ -56,8 +56,8 @@ export async function oauthRoutes(fastify, options) {
 			// Check if 2FA is enabled for the user
 			if (user.twofa_secret) {
 				try {
-					const tempToken = await authService.generateTempToken({ user_id: user.id }, "2fa", 300);
-					fastify.log.info(`2FA token generated for Google OAuth user ${user.username}`);
+					const tempToken = await authService.generateTempToken({ userId: user.id }, "2fa", 300);
+					fastify.log.info(`2FA token generated for Google OAuth user: ${user.username}`);
 
 					return reply.code(202).send({
 						step: "2fa_required",
@@ -71,7 +71,7 @@ export async function oauthRoutes(fastify, options) {
 			}
 
 			// If no 2FA, proceed with the normal process
-			const { accessToken, refreshToken } = await authService.generateTokens(user, id);
+			const { accessToken, refreshToken } = await authService.generateTokens(user.id);
 
 			// Set cookies with tokens
 			authUtils.ft_setCookie(reply, accessToken, 15);
@@ -113,7 +113,7 @@ export async function oauthRoutes(fastify, options) {
 			// Create the user in the database
 			const result = fastify.db.prepare(`
 				INSERT INTO users (username, email, avatar, is_google_account, google_name)
-				VALUES (?, ?, ?, ?, ?)
+				VALUES (?, ?, ?, 1, ?)
 			`).run(checked_username, payload.email, payload.avatar, payload.google_name);
 
 			const userId = result.lastInsertRowid;
@@ -124,7 +124,68 @@ export async function oauthRoutes(fastify, options) {
 			// Check if 2FA is enabled for the user. Should not happen during registration.
 			if (user.twofa_secret) {
 				try {
-					const tempToken = await authService.generateTempToken({ user_id: user.id }, "2fa", 300);
-					fastify.log.info(`2FA token generated for Google OAuth user ${user.username}`);
+					const tempToken = await authService.generateTempToken({ userId: user.id }, "2fa", 300);
+					fastify.log.info(`2FA token generated for Google OAuth user: ${user.username}`);
 
-					
+					return reply.code(202).send({
+						step: "2fa_required",
+						message: "Two-factor authentication is enabled. Please provide the verification code.",
+						temp_token: tempToken
+					});
+				} catch (twoFaError) {
+					fastify.log.error(twoFaError, `2FA token generation error in Google Oauth:`);
+					throw new Error('Failed to generate 2FA token in Google Oauth.');
+				}
+			}
+
+			// Generate access and refresh tokens
+			const { accessToken, refreshToken } = await authService.generateTokens(user.id);
+
+			// Send the response with tokens in cookies
+			authUtils.ft_setCookie(reply, accessToken, 15);
+			authUtils.ft_setCookie(reply, refreshToken, 7);
+
+			return reply.code(201).send({
+				success: true,
+				id: user.id,
+				username: user.username,
+				email: user.email,
+				avatar: user.avatar,
+				message: "Google account created and user authenticated."
+			});
+
+		} catch (error) {
+			fastify.log.error('Google OAuth complete-register error:', error);
+			return reply.code(500).send({ success: false, error: 'Internal server error while completing Google account registration.' });
+		}
+	});
+
+	fastify.get('/auth/account_type', async (request, reply) => {
+		try {
+			const userId = request.user.userId;
+
+			if (!userId)
+				return reply.code(401).send({ success: false, error: "Unauthorized." });
+
+			const user = fastify.db.prepare(`SELECT is_google_account, password FROM users WHERE id = ?`).get(userId);
+
+			if (!user)
+				return reply.code(404).send({ success: false, error: "User not found." });
+
+			const isGoogle = !!user.is_google_account;
+			const hasPassword = !!(user.password && user.password.trim().length > 0);
+
+			return reply.code(200).send({
+				success: true,
+				message: "User account type retrieved.",
+				data: {
+					is_google_account: isGoogle,
+					has_password: hasPassword
+				}
+			});
+		} catch (error) {
+			fastify.log.error(error, `Error with user account type retrieved.`);
+			return reply.code(500).send({ success: false, error: "Internal server error while retrieving user account type." });
+		}
+	});
+}
