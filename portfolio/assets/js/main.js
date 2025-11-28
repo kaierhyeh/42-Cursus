@@ -93,25 +93,28 @@
 
 			}
 
-	// Main Sections: Two.
+	// Main Sections: Projects.
 
 		// Lightbox gallery.
 			$window.on('load', function() {
 
-				$('#two').poptrox({
-					caption: function($a) { return $a.next('h3').text(); },
-					overlayColor: '#2c2c2c',
-					overlayOpacity: 0.85,
-					popupCloserText: '',
-					popupLoaderText: '',
-					selector: '.work-item a.image',
-					usePopupCaption: true,
-					usePopupDefaultStyling: false,
-					usePopupEasyClose: false,
-					usePopupNav: true,
-					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
-				});
 
+		$('.work-item').each(function() {
+			$(this).poptrox({
+				caption: function($a) { 
+					return $(this).find('h3').first().text(); 
+				}.bind(this),
+				overlayColor: '#2c2c2c',
+				overlayOpacity: 0.85,
+				popupCloserText: '',
+				popupLoaderText: '',
+				selector: 'a[href*="images/"]',
+				usePopupCaption: true,
+				usePopupDefaultStyling: false,
+				usePopupEasyClose: false,
+				usePopupNav: true,
+				windowMargin: (breakpoints.active('<=small') ? 0 : 50)
 			});
+		});		});
 
 })(jQuery);
