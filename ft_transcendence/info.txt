@@ -1,2 +1,3 @@
 Gradebook: https://cs50.me/cs50x
 Certificate: https://certificates.cs50.io/?size=letter
+Project slide: https://docs.google.com/presentation/d/1a-spebO1SCUHy2Sftyw7u80LqlUZdZEFFQai2xifatE/edit?slide=id.g101b9d58f89_0_282#slide=id.g101b9d58f89_0_282
