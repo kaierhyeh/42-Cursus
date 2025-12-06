@@ -1,0 +1,2 @@
+Gradebook: https://cs50.me/cs50x
+Certificate: https://certificates.cs50.io/?size=letter
