@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/10/10 15:04:07 by kyeh             ###   ########.fr        #
+#    Updated: 2025/12/12 11:10:46 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ $(MLX):
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/cub3d.h Makefile
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/cub3D.h Makefile
 	@mkdir -p $(dir $@)
 	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY) $(NOCOLOR)"
 	@gcc $(CFLAGS) -I $(HEADER) -I libft/include -I $(MLX) -c $< -o $@

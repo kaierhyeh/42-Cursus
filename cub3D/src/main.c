@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:11:20 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/21 17:07:42 by kyeh             ###   ########.fr       */
+/*   Updated: 2025/12/12 11:12:24 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 static t_bool	check_cub(char *filename)
 {

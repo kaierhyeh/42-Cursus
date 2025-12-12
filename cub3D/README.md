@@ -1,6 +1,35 @@
 # cub3D
 A ray-casting game: an advanced graphical project where we create a simplified 3D game, whose goal is to learn a rendering technique called ray casting.
 
+## Quick Start
+
+### Prerequisites (Ubuntu/Debian)
+Install required X11 and BSD libraries:
+```bash
+sudo apt-get update
+sudo apt-get install -y libx11-dev libxext-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libbsd-dev
+```
+
+### Build and Run
+```bash
+# Clone the repository
+git clone https://github.com/kaierhyeh/42-Cursus.git
+cd 42-Cursus/cub3D
+
+# Build the project
+make
+
+# Run with test map
+./cub3D maps/test.cub
+```
+
+### Controls
+- **W / A / S / D**: Move forward / left / backward / right
+- **← / →**: Rotate camera left / right
+- **Mouse Movement**: Look around
+- **Space / Left Click**: Interact with doors
+- **ESC**: Exit game
+
 ## Key Concepts
 1. Parsing Maps, Wall texture paths, and initializing images.
 2. Use a recursive function (floodfill) to check if a Map is valid that the player will never go outside of bound.

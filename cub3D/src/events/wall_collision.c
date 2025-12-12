@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:45:58 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:53:06 by kyeh             ###   ########.fr       */
+/*   Updated: 2025/12/12 11:12:24 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 void	move_check(t_vec *step, t_data *data, int add_or_min)
 {

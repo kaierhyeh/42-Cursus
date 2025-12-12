@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 19:12:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 16:12:05 by kyeh             ###   ########.fr       */
+/*   Updated: 2025/12/12 11:12:24 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 static t_texture	get_wall_dir(t_data *data)
 {

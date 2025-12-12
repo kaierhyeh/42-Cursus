@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:49:29 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/21 16:45:43 by kyeh             ###   ########.fr       */
+/*   Updated: 2025/12/12 11:12:24 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 static void	get_texture_addr(t_texture_data *t)
 {
